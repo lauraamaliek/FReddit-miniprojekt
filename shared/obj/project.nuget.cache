@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "vtEAEKQzVeA=",
+  "success": true,
+  "projectFilePath": "/Users/laura/FReddit/shared/shared.csproj",
+  "expectedPackageFiles": [
+    "/Users/laura/.nuget/packages/microsoft.netcore.app.ref/9.0.12/microsoft.netcore.app.ref.9.0.12.nupkg.sha512",
+    "/Users/laura/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.12/microsoft.aspnetcore.app.ref.9.0.12.nupkg.sha512"
+  ],
+  "logs": []
+}
