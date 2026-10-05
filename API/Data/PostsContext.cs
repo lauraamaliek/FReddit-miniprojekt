@@ -10,7 +10,7 @@ namespace Model
         public DbSet<Post> Posts { get; set; }
         public string DbPath { get; }
 
-        public PostsContext()
+        public PostContext()
         {
             DbPath = "bin/Posts.db";
         }
