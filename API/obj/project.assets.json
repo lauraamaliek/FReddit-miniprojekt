@@ -846,6 +846,16 @@
         "build": {
           "buildTransitive/net8.0/_._": {}
         }
+      },
+      "shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/shared.dll": {}
+        }
       }
     }
   },
@@ -2496,6 +2506,11 @@
         "system.composition.typedparts.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "shared/1.0.0": {
+      "type": "project",
+      "path": "../shared/shared.csproj",
+      "msbuildProject": "../shared/shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2503,7 +2518,8 @@
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 10.0.8",
       "Microsoft.AspNetCore.OpenApi >= 10.0.2",
       "Microsoft.EntityFrameworkCore.Design >= 10.0.8",
-      "Microsoft.EntityFrameworkCore.Sqlite >= 10.0.8"
+      "Microsoft.EntityFrameworkCore.Sqlite >= 10.0.8",
+      "shared >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -2530,7 +2546,11 @@
       "frameworks": {
         "net10.0": {
           "targetAlias": "net10.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Users/laura/FReddit/shared/shared.csproj": {
+              "projectPath": "/Users/laura/FReddit/shared/shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

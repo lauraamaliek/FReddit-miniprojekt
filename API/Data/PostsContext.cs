@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using shared.Model;
 
 namespace Model
 {
@@ -19,7 +20,7 @@ namespace Model
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Board>().ToTable("Posts");
+            modelBuilder.Entity<Post>().ToTable("Posts");
     
         }
     }
