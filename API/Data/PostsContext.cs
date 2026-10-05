@@ -8,6 +8,7 @@ namespace Model
     public class PostContext : DbContext
     {
         public DbSet<Post> Posts { get; set; }
+        public DbSet<User> Users { get; set; }
         public string DbPath { get; }
 
         public PostContext()
@@ -21,6 +22,7 @@ namespace Model
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().ToTable("Posts");
+            modelBuilder.Entity<Post>().ToTable("Users");
     
         }
     }

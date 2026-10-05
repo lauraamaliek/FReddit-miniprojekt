@@ -7,7 +7,7 @@ public class User {
         Username = username;
     }
     public User() {
-        Id = 0;
+        Id = 2;
         Username = "";
     }
 }
