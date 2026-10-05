@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/laura/FReddit/shared/shared.csproj": {}
+    "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj": {}
   },
   "projects": {
-    "/Users/laura/FReddit/shared/shared.csproj": {
+    "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/laura/FReddit/shared/shared.csproj",
+        "projectUniqueName": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj",
         "projectName": "shared",
-        "projectPath": "/Users/laura/FReddit/shared/shared.csproj",
+        "projectPath": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj",
         "packagesPath": "/Users/laura/.nuget/packages/",
-        "outputPath": "/Users/laura/FReddit/shared/obj/",
+        "outputPath": "/Users/laura/FReddit-miniprojekt2/shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/laura/.nuget/NuGet/NuGet.Config"

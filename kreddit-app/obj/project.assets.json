@@ -3133,11 +3133,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/laura/FReddit/kreddit-app/kreddit-app.csproj",
+      "projectUniqueName": "/Users/laura/FReddit-miniprojekt2/kreddit-app/kreddit-app.csproj",
       "projectName": "kreddit-app",
-      "projectPath": "/Users/laura/FReddit/kreddit-app/kreddit-app.csproj",
+      "projectPath": "/Users/laura/FReddit-miniprojekt2/kreddit-app/kreddit-app.csproj",
       "packagesPath": "/Users/laura/.nuget/packages/",
-      "outputPath": "/Users/laura/FReddit/kreddit-app/obj/",
+      "outputPath": "/Users/laura/FReddit-miniprojekt2/kreddit-app/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/laura/.nuget/NuGet/NuGet.Config"
@@ -3152,8 +3152,8 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "projectReferences": {
-            "/Users/laura/FReddit/shared/shared.csproj": {
-              "projectPath": "/Users/laura/FReddit/shared/shared.csproj"
+            "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj": {
+              "projectPath": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj"
             }
           }
         }

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/laura/FReddit/API/API.csproj": {}
+    "/Users/laura/FReddit-miniprojekt2/API/API.csproj": {}
   },
   "projects": {
-    "/Users/laura/FReddit/API/API.csproj": {
+    "/Users/laura/FReddit-miniprojekt2/API/API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/laura/FReddit/API/API.csproj",
+        "projectUniqueName": "/Users/laura/FReddit-miniprojekt2/API/API.csproj",
         "projectName": "API",
-        "projectPath": "/Users/laura/FReddit/API/API.csproj",
+        "projectPath": "/Users/laura/FReddit-miniprojekt2/API/API.csproj",
         "packagesPath": "/Users/laura/.nuget/packages/",
-        "outputPath": "/Users/laura/FReddit/API/obj/",
+        "outputPath": "/Users/laura/FReddit-miniprojekt2/API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/laura/.nuget/NuGet/NuGet.Config"
@@ -26,8 +26,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "/Users/laura/FReddit/shared/shared.csproj": {
-                "projectPath": "/Users/laura/FReddit/shared/shared.csproj"
+              "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj": {
+                "projectPath": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj"
               }
             }
           }
@@ -504,14 +504,14 @@
         }
       }
     },
-    "/Users/laura/FReddit/shared/shared.csproj": {
+    "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/laura/FReddit/shared/shared.csproj",
+        "projectUniqueName": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj",
         "projectName": "shared",
-        "projectPath": "/Users/laura/FReddit/shared/shared.csproj",
+        "projectPath": "/Users/laura/FReddit-miniprojekt2/shared/shared.csproj",
         "packagesPath": "/Users/laura/.nuget/packages/",
-        "outputPath": "/Users/laura/FReddit/shared/obj/",
+        "outputPath": "/Users/laura/FReddit-miniprojekt2/shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/laura/.nuget/NuGet/NuGet.Config"

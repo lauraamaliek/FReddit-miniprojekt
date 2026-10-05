@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "NAozYgQjIgE=",
+  "dgSpecHash": "oYsEhHakf8A=",
   "success": true,
-  "projectFilePath": "/Users/laura/FReddit/kreddit-app/kreddit-app.csproj",
+  "projectFilePath": "/Users/laura/FReddit-miniprojekt2/kreddit-app/kreddit-app.csproj",
   "expectedPackageFiles": [
     "/Users/laura/.nuget/packages/microsoft.aspnetcore.app.internal.assets/10.0.2/microsoft.aspnetcore.app.internal.assets.10.0.2.nupkg.sha512",
     "/Users/laura/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.3.11/microsoft.aspnetcore.authentication.abstractions.2.3.11.nupkg.sha512",
