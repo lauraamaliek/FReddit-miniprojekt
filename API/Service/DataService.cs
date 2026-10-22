@@ -105,15 +105,33 @@ public class DataService
         db.SaveChanges();
         return post;
     }
-/*
-    public Post PutCommentUpwote(int id) {
+
+    public Comment PutCommentUpwote(int postId, int commentId) {
+        var post = db.Posts
+            .Include(p => p.Comments)
+            .ThenInclude(c => c.User)
+            .FirstOrDefault(p => p.Id == postId);
+       
+        var comment = post.Comments.FirstOrDefault(c => c.Id == commentId);
         
+        comment.Upvotes++;
+        db.SaveChanges();
+        return comment;
     }
 
-    public Post PutCommentDownwote(int id) {
+    public Comment PutCommentDownwote(int postId, int commentId) {
+        var post = db.Posts
+            .Include(p => p.Comments)
+            .ThenInclude(c => c.User)
+            .FirstOrDefault(p => p.Id == postId);
+       
+        var comment = post.Comments.FirstOrDefault(c => c.Id == commentId);
         
+        comment.Downvotes++;
+        db.SaveChanges();
+        return comment;
     }
-*/
+
     public string CreatePosts(string title, string content, int userid)
     {
         User user = db.Users.FirstOrDefault(u => u.UserId == userid);
