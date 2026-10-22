@@ -112,9 +112,9 @@
         posts = await apiService.GetPosts();
     }
 
-    private Task Downvote(int id)
+    private async Task Downvote(int id)
     {
-        Console.WriteLine("Downvote not implemented yet.");
-        return Task.CompletedTask;
+        var updatedPost = await apiService.DownvotePost(id);
+        posts = await apiService.GetPosts();
     }
 }
