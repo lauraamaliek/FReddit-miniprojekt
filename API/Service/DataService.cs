@@ -19,6 +19,7 @@ public class DataService
     /// </summary>
     public void SeedData()
     {
+        db.Database.EnsureCreated();
         
         User user = db.Users.FirstOrDefault()!;
         // derfor list skal sættes!
@@ -79,9 +80,9 @@ public class DataService
 
     public List<Post> GetPosts()
     {
-        
+        return db.Posts.Include(b => b.User).ToList();
     }
-
+/*
     public Post GetPostById(int id) {
         
     }
@@ -110,5 +111,5 @@ public class DataService
         
     }
 
-    
+    */
 }

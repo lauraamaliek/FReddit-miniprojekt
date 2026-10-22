@@ -9,21 +9,18 @@ namespace Model
     {
         public DbSet<Post> Posts { get; set; }
         public DbSet<User> Users { get; set; }
-        public string DbPath { get; }
+       
+        
 
-        public PostContext()
+        public PostContext(DbContextOptions<PostContext> options) : base(options)
         {
-            DbPath = "bin/Posts.db";
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite($"Data Source={DbPath}");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Post>().ToTable("Posts");
-            modelBuilder.Entity<Post>().ToTable("Users");
-    
+            modelBuilder.Entity<User>().ToTable("Users");
+       
         }
     }
 }

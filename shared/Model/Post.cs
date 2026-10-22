@@ -26,6 +26,6 @@ public class Post {
 
     public override string ToString()
     {
-        return $"Id: {Id}, Title: {Title}, Content: {Content}, Upvotes: {Upvotes}, Downvotes: {Downvotes}, User: {User}";
+        return $"UserId: {Id}, Title: {Title}, Content: {Content}, Upvotes: {Upvotes}, Downvotes: {Downvotes}, User: {User}";
     }
 }

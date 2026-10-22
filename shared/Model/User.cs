@@ -1,13 +1,13 @@
 namespace shared.Model;
 
 public class User {
-    public int Id { get; set; }
+    public int UserId { get; set; }
     public string Username { get; set; }
     public User(string username = "") {
         Username = username;
     }
     public User() {
-        Id = 2;
+        UserId = 2;
         Username = "";
     }
 }

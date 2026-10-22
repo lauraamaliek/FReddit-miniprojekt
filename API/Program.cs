@@ -1,31 +1,78 @@
+using API.Service;
+using Microsoft.AspNetCore.Http.Json;
+using Microsoft.EntityFrameworkCore;
+using Model;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Sætter CORS så API'en kan bruges fra andre domæner
+var AllowSomeStuff = "_AllowSomeStuff";
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: AllowSomeStuff, builder => {
+        builder.AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+// Tilføj DbContext factory som service.
+builder.Services.AddDbContext<PostContext>(options =>
+    options.UseSqlite(builder.Configuration.GetConnectionString("ContextSQLite")));
+
+// Tilføj DataService så den kan bruges i endpoints
+builder.Services.AddScoped<DataService>();
+
+// Dette kode kan bruges til at fjerne "cykler" i JSON objekterne.
+
+builder.Services.Configure<JsonOptions>(options =>
+{
+    // Her kan man fjerne fejl der opstår, når man returnerer JSON med objekter,
+    // der refererer til hinanden i en cykel.
+    // (altså dobbelrettede associeringer)
+    options.SerializerOptions.ReferenceHandler =
+        System.Text.Json.Serialization.ReferenceHandler.IgnoreCycles;
+});
+
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Seed data hvis nødvendigt.
+using (var scope = app.Services.CreateScope())
 {
-    app.MapOpenApi();
+    var dataService = scope.ServiceProvider.GetRequiredService<DataService>();
+    dataService.SeedData(); // Fylder data på, hvis databasen er tom. Ellers ikke.
 }
 
 app.UseHttpsRedirection();
+app.UseCors(AllowSomeStuff);
 
-app.UseAuthorization();
-
-app.MapControllers();
-
-//GET
-app.MapGet("/api/posts", () =>
+// Middlware der kører før hver request. Sætter ContentType for alle responses til "JSON".
+app.Use(async (context, next) =>
 {
-    
+    context.Response.ContentType = "application/json; charset=utf-8";
+    await next(context);
 });
 
+
+//GET
+app.MapGet("/api/posts", (DataService service) =>
+{
+    return service.GetPosts().Select(p => new
+    {
+        id = p.Id,
+        title = p.Title,
+        content = p.Content,
+        upvotes = p.Upvotes,
+        downvotes = p.Downvotes,
+        user = new
+        {
+            Id = p.User.UserId,
+            username=p.User.Username
+        }
+    });
+});
+/*
 app.MapGet("/api/posts/{id}",() =>
 {
 
@@ -64,5 +111,5 @@ app.MapPost("/api/posts/{id}/comments",() =>
 {
 
 });
-
+*/
 app.Run();
