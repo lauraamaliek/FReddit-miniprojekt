@@ -1,80 +1,178 @@
-﻿<!-- 
-Notice how this route has a route parameter 'id'. This is how we can pass data to the route.
-See how the links are made in 'PostList.razor'.
--->
+﻿
 @page "/post/{id}"
 
-@using kreddit_app.Data;
-@using shared.Model;
+@using kreddit_app.Data
+@using shared.Model
 @inject ApiService apiService
 
 <PageTitle>Kreddit</PageTitle>
 
-<style>
-div.contents {
-  background-color: #f2f0eb;
-  width: 600px;
-  border: 2px solid #452d3d;
-  padding: 10px;
-  margin-top: 20px;
-}
-</style>
+<div class="reddit-page post-detail-page">
+    <a href="/" class="back-link">← Tilbage til feed</a>
 
-@if (Post == null)
-{
-    <p><em>Loading...</em></p>
-}
-else
-{
-    <div class="contents">
-        <h4>@Post.Title</h4>
-        <p><strong>User: @Post.User.Username, Votes: @(Post.Upvotes - Post.Downvotes)</strong></p>
-        <p>@Post.Content</p>
-    </div>
+    @if (Post == null)
+    {
+        <div class="loading-card">
+            <div class="loading-spinner"></div>
+            <p>Henter opslag...</p>
+        </div>
+    }
+    else
+    {
+        <article class="detail-post-card">
+            <div class="detail-vote-column">
 
-    <div class="contents">
-    <h4>Comments</h4>
-    <table>
-        <tr>
-            <th>User</th>
-            <th>Comment</th>
-            <th colspan="3">Votes</th>
-        </tr>
-        @foreach (var comment in Post.Comments)
-        {
-            <tr>
-                <td>@comment.User.Username</td>
-                <td>@comment.Content</td>
-                <td>@(comment.Upvotes - comment.Downvotes)</td>
-                <td><button @onclick="() => Upvote(comment.Id)">Upvote</button></td>
-                <td><button @onclick="() => Downvote(comment.Id)">Downvote</button></td>
-            </tr>
-        }
-    </table>
-    </div>
+                <span class="vote-count">
+                    @(Post.Upvotes)
+                </span>
 
-    <!-- This demonstrates how to pass in PostUserId to the component 'CreateComment'. See how 
-         it is used in the file CreateComment.razor -->
-    <CreateComment PostId=@PostId></CreateComment>
-}
+                <button class="vote-button upvote"
+                        aria-label="Upvote opslag"
+                        @onclick="() => Upvote(Post.Id)">
+                    ▲
+                </button>
+
+                <button class="vote-button downvote"
+                        aria-label="Downvote opslag"
+                        @onclick="() => Downvote(Post.Id)">
+                    ▼
+                </button>
+
+                <span class="vote-count">
+                    @(Post.Downvotes)
+                </span>
+            </div>
+
+            <div class="detail-post-content">
+                <div class="post-meta">
+                    <div class="community-avatar">r/</div>
+                    <span class="community-name">community</span>
+                    <span class="meta-separator">·</span>
+                    <span class="post-label">Community post</span>
+                </div>
+
+                <h1 class="detail-post-title">@Post.Title</h1>
+
+                <div class="author-info">
+                    <span class="author-icon">♙</span>
+                    <span>Opslået af <strong>@Post.User.Username</strong></span>
+                </div>
+
+                <p class="detail-post-description">@Post.Content</p>
+
+                <div class="post-actions">
+                    <span class="post-action">💬 @Post.Comments.Count kommentarer</span>
+                    <span class="post-action muted-action">✨ Fællesskab</span>
+                </div>
+            </div>
+        </article>
+
+        <section class="comments-section">
+            <div class="comments-heading">
+                <div>
+                    <span class="feed-eyebrow">SAMTALEN FORTSÆTTER</span>
+                    <h2>Kommentarer 💜</h2>
+                </div>
+
+                <span class="comment-count">
+                    @Post.Comments.Count
+                </span>
+            </div>
+
+            @if (Post.Comments.Count == 0)
+            {
+                <div class="empty-feed">
+                    <span>💬</span>
+                    <h3>Vær den første til at kommentere</h3>
+                    <p>Start samtalen og del dine tanker med fællesskabet.</p>
+                </div>
+            }
+            else
+            {
+                <div class="comment-list">
+                    @foreach (var comment in Post.Comments)
+                    {
+                        <article class="comment-card" @key="comment.Id">
+                            <div class="comment-vote-column">
+
+                                <span class="vote-count">
+                                    @(comment.Upvotes)
+                                </span>
+
+                                <button class="vote-button upvote"
+                                        aria-label="Upvote kommentar"
+                                        @onclick="() => Upvote(comment.Id)">
+                                    ▲
+                                </button>
+
+                                <button class="vote-button downvote"
+                                        aria-label="Downvote kommentar"
+                                        @onclick="() => Downvote(comment.Id)">
+                                    ▼
+                                </button>
+
+                                <span class="vote-count">
+                                    @(comment.Downvotes)
+                                </span>
+                            </div>
+
+                            <div class="comment-content">
+                                <div class="comment-author">
+                                    <div class="comment-avatar">
+                                        @GetInitial(comment.User.Username)
+                                    </div>
+
+                                    <strong>@comment.User.Username</strong>
+                                    <span class="meta-separator">·</span>
+                                    <span class="post-label">Medlem</span>
+                                </div>
+
+                                <p>@comment.Content</p>
+                            </div>
+                        </article>
+                    }
+                </div>
+            }
+
+            <div class="create-comment-card">
+                <h3>Del dine tanker</h3>
+                <p>Har du noget på hjerte? Skriv en kommentar 💜</p>
+
+                <CreateComment PostId="@PostId" />
+            </div>
+        </section>
+    }
+</div>
 
 @code {
     [Parameter]
-    public string Id { get; set; }
-    public int PostId { get { return int.Parse(Id); } }
-    public Post Post { get; set; }
+    public string Id { get; set; } = string.Empty;
+
+    public int PostId => int.Parse(Id);
+
+    public Post? Post { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         Post = await apiService.GetPost(PostId);
     }
-    private async void Upvote(int id)
+
+    private string GetInitial(string? username)
     {
-        Console.WriteLine("Not implemented 😪");
+        return string.IsNullOrWhiteSpace(username)
+            ? "?"
+            : username[..1].ToUpperInvariant();
     }
 
-    private async void Downvote(int id)
+    private Task Upvote(int id)
     {
-        Console.WriteLine("Not implemented 😪");
+        Console.WriteLine("Upvote not implemented yet.");
+        return Task.CompletedTask;
+    }
+
+    private Task Downvote(int id)
+    {
+        Console.WriteLine("Downvote not implemented yet.");
+        return Task.CompletedTask;
     }
 }
