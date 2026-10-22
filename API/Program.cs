@@ -126,11 +126,18 @@ app.MapPost("/api/posts",(DataService service, NewPostData data) =>
     string result = service.CreatePosts(data.Title, data.Content, data.UserId);
     return new { message = result };
 });
-/*
-app.MapPost("/api/posts/{id}/comments",() =>
-{
 
+app.MapPost("/api/posts/{postid}/comments",(DataService service,int postid, NewCommentData data) =>
+{
+    var comment = service.CreateComments(postid, data.UserId, data.Content);
+    return new {  id = comment.Id,
+        content = comment.Content,
+        upvotes = comment.Upvotes,
+        downvotes = comment.Downvotes,
+        user = new { comment.User.UserId, comment.User.Username } };
 });
-*/
+
 app.Run();
+
 record NewPostData(string Title, string Content, int UserId);
+record NewCommentData(string Content, int UserId);

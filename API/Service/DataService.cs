@@ -80,23 +80,27 @@ public class DataService
 
     public List<Post> GetPosts()
     {
-        return db.Posts.Include(b => b.User).ToList();
+        return db.Posts.Include(p => p.User)
+            .ToList();
     }
 
-    public Post GetPostById(int id) {
-        return db.Posts.Include(b => b.User).FirstOrDefault(p=>p.Id==id);
+    public Post? GetPostById(int id) {
+        return db.Posts.Include(p => p.User)
+            .Include(p => p.Comments)
+                .ThenInclude(c => c.User)
+            .FirstOrDefault(p=>p.Id==id);
     }
 
     public Post PutPostUpwote(int PostId)
     {
-        var post = db.Posts.Include(b => b.User).FirstOrDefault(p => p.Id == PostId);
+        var post = db.Posts.Include(p => p.User).FirstOrDefault(p => p.Id == PostId);
         post.Upvotes++;
         db.SaveChanges();
         return post;
     }
 
     public Post PutPostDownwote(int PostId) {
-        var post = db.Posts.Include(b => b.User).FirstOrDefault(p => p.Id == PostId);
+        var post = db.Posts.Include(p => p.User).FirstOrDefault(p => p.Id == PostId);
         post.Downvotes++;
         db.SaveChanges();
         return post;
@@ -117,10 +121,16 @@ public class DataService
         db.SaveChanges();
         return "Post created";
     }
-/*
-    public Post CreateComments(int id) {
-        
-    }
 
-    */
+    public Comment? CreateComments(int PostId, int userId, string content)
+    {
+        var post = db.Posts.Include(p=>p.Comments).FirstOrDefault(p => p.Id == PostId);
+        User user = db.Users.FirstOrDefault(u => u.UserId == userId);
+        
+        Comment comment = new Comment { Content = content, User = user };
+        post.Comments.Add(comment);
+        db.SaveChanges();
+        return comment;
+    }
+    
 }
