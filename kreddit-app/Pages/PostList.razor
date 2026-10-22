@@ -39,7 +39,13 @@
             @foreach (var post in posts)
             {
                 <article class="post-card" @key="post.Id">
+
                     <div class="vote-column">
+
+                        <span class="vote-count">
+                            @(post.Upvotes)
+                        </span>
+
                         <button class="vote-button upvote"
                                 aria-label="Upvote"
                                 title="Upvote"
@@ -47,16 +53,17 @@
                             <span>▲</span>
                         </button>
 
-                        <span class="vote-count">
-                            @(post.Upvotes - post.Downvotes)
-                        </span>
-
                         <button class="vote-button downvote"
                                 aria-label="Downvote"
                                 title="Downvote"
                                 @onclick="() => Downvote(post.Id)">
                             <span>▼</span>
                         </button>
+
+                        <span class="vote-count">
+                            @(post.Downvotes)
+                        </span>
+
                     </div>
 
                     <div class="post-content">
