@@ -72,12 +72,13 @@ app.MapGet("/api/posts", (DataService service) =>
         }
     });
 });
-/*
-app.MapGet("/api/posts/{id}",() =>
-{
 
+app.MapGet("/api/posts/{id}",(DataService service, int id) =>
+{
+    return service.GetPostById(id);
 });
 
+/*
 //put
 app.MapPut("/api/posts/{id}/upvote",() =>
 {

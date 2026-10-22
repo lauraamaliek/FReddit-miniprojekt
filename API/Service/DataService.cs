@@ -82,11 +82,11 @@ public class DataService
     {
         return db.Posts.Include(b => b.User).ToList();
     }
-/*
-    public Post GetPostById(int id) {
-        
-    }
 
+    public Post GetPostById(int id) {
+        return db.Posts.Include(b => b.User).FirstOrDefault(p=>p.Id==id);
+    }
+/*
     public Post PutPostUpwote(int id) {
         
     }
