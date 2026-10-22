@@ -1,0 +1,188 @@
+
+.create-post-form {
+    --purple: #a78bfa;
+    --purple-dark: #8060d8;
+    --purple-light: #f1ebff;
+    --purple-pale: #faf8ff;
+    --text-main: #29243a;
+    --text-muted: #817b91;
+    --border: #eee9f5;
+
+    padding: 26px;
+    border: 1px solid #e8defb;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #ffffff 0%, #faf8ff 100%);
+    box-shadow: 0 4px 18px rgba(111, 77, 174, 0.05);
+}
+
+/* Heading */
+.create-post-heading {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 26px;
+}
+
+.create-post-icon {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    place-items: center;
+    border-radius: 15px;
+    background: var(--purple-light);
+    font-size: 22px;
+}
+
+.create-post-heading h3 {
+    margin: 0 0 5px;
+    color: var(--text-main);
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.create-post-heading p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+/* Form fields */
+.create-post-fields {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.create-post-fields label {
+    margin-top: 8px;
+    color: #514667;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.create-post-fields input,
+.create-post-fields textarea {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #e7e0f0;
+    border-radius: 12px;
+    outline: none;
+    background: #ffffff;
+    color: var(--text-main);
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.6;
+    transition: border-color 180ms ease,
+                box-shadow 180ms ease,
+                background 180ms ease;
+}
+
+.create-post-fields input {
+    min-height: 48px;
+}
+
+.create-post-fields textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.create-post-fields input::placeholder,
+.create-post-fields textarea::placeholder {
+    color: #aaa2ba;
+}
+
+.create-post-fields input:hover,
+.create-post-fields textarea:hover {
+    border-color: #d6c7f5;
+}
+
+.create-post-fields input:focus,
+.create-post-fields textarea:focus {
+    border-color: var(--purple);
+    background: #fefcff;
+    box-shadow: 0 0 0 4px rgba(167, 139, 250, 0.15);
+}
+
+/* Footer */
+.create-post-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin-top: 12px;
+    padding-top: 18px;
+    border-top: 1px solid #f0eaf8;
+}
+
+.create-post-hint {
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* Purple button */
+.create-post-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 44px;
+    padding: 11px 20px;
+    border: none;
+    border-radius: 12px;
+    background: var(--purple-dark);
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 750;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(128, 96, 216, 0.18);
+    transition: background 180ms ease,
+                box-shadow 180ms ease,
+                transform 180ms ease;
+}
+
+.create-post-button span {
+    font-size: 19px;
+    line-height: 1;
+}
+
+.create-post-button:hover {
+    background: #6f4bc6;
+    box-shadow: 0 6px 15px rgba(128, 96, 216, 0.25);
+    transform: translateY(-1px);
+}
+
+.create-post-button:active {
+    transform: translateY(0);
+}
+
+.create-post-button:focus-visible {
+    outline: 3px solid #c4b5fd;
+    outline-offset: 3px;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .create-post-form {
+        padding: 19px 15px;
+        border-radius: 16px;
+    }
+
+    .create-post-heading h3 {
+        font-size: 19px;
+    }
+
+    .create-post-footer {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .create-post-button {
+        width: 100%;
+    }
+}
