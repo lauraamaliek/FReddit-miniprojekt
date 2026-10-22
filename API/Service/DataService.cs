@@ -87,7 +87,7 @@ public class DataService
         return db.Posts.Include(b => b.User).FirstOrDefault(p=>p.Id==id);
     }
 /*
-    public Post PutPostUpwote(int id) {
+    public Post PutPostUpwote(int PostId) {
         
     }
 
@@ -102,11 +102,15 @@ public class DataService
     public Post PutCommentDownwote(int id) {
         
     }
-
-    public Post CreatePosts(int id) {
-        
+*/
+    public string CreatePosts(string title, string content, int userid)
+    {
+        User user = db.Users.FirstOrDefault(u => u.UserId == userid);
+        db.Posts.Add(new Post { Title = title, Content = content, User = user });
+        db.SaveChanges();
+        return "Post created";
     }
-
+/*
     public Post CreateComments(int id) {
         
     }

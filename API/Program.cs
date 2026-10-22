@@ -79,7 +79,7 @@ app.MapGet("/api/posts/{id}",(DataService service, int id) =>
 });
 
 /*
-//put
+//PUT 
 app.MapPut("/api/posts/{id}/upvote",() =>
 {
 
@@ -100,17 +100,19 @@ app.MapPut("/api/posts/{postid}/comments/{commentid}/downvote",() =>
 
 });
 
-
+*/
 //POST
 
-app.MapPost("/api/posts",() =>
+app.MapPost("/api/posts",(DataService service, NewPostData data) =>
 {
-
+    string result = service.CreatePosts(data.Title, data.Content, data.UserId);
+    return new { message = result };
 });
-
+/*
 app.MapPost("/api/posts/{id}/comments",() =>
 {
 
 });
 */
 app.Run();
+record NewPostData(string Title, string Content, int UserId);
