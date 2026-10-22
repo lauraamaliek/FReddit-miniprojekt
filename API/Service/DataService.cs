@@ -76,4 +76,39 @@ public class DataService
 
 
     }
+
+    public List<Post> GetPosts()
+    {
+        
+    }
+
+    public Post GetPostById(int id) {
+        
+    }
+
+    public Post PutPostUpwote(int id) {
+        
+    }
+
+    public Post PutPostDownwote(int id) {
+        
+    }
+
+    public Post PutCommentUpwote(int id) {
+        
+    }
+
+    public Post PutCommentDownwote(int id) {
+        
+    }
+
+    public Post CreatePosts(int id) {
+        
+    }
+
+    public Post CreateComments(int id) {
+        
+    }
+
+    
 }
