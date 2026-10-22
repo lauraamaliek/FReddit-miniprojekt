@@ -50,9 +50,8 @@
         {
             return;
         }
-
-        // TODO: Implementér API-kaldet, når CreatePost er klar.
-        // await apiService.CreatePost(postTitle, postContent, 2);
+        
+        await apiService.CreatePost(postTitle, postContent, 2);
 
         NavigationManager.NavigateTo("/", true);
     }

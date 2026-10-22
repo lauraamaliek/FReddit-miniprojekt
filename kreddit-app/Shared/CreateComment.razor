@@ -25,6 +25,9 @@
 @code {
     [Parameter]
     public int PostId { get; set; }
+    [Parameter]
+    public EventCallback OnCommentCreated { get; set; }
+
 
     private string? content;
 
@@ -38,5 +41,6 @@
         await apiService.CreateComment(content, PostId, 2);
 
         content = string.Empty;
+        await OnCommentCreated.InvokeAsync();
     }
 }

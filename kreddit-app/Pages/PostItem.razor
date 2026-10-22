@@ -28,13 +28,13 @@
 
                 <button class="vote-button upvote"
                         aria-label="Upvote opslag"
-                        @onclick="() => Upvote(Post.Id)">
+                        @onclick="() => UpvotePost(Post.Id)">
                     ▲
                 </button>
 
                 <button class="vote-button downvote"
                         aria-label="Downvote opslag"
-                        @onclick="() => Downvote(Post.Id)">
+                        @onclick="() => DownvotePost(Post.Id)">
                     ▼
                 </button>
 
@@ -101,13 +101,13 @@
 
                                 <button class="vote-button upvote"
                                         aria-label="Upvote kommentar"
-                                        @onclick="() => Upvote(comment.Id)">
+                                        @onclick="() => UpvoteComment(comment.Id)">
                                     ▲
                                 </button>
 
                                 <button class="vote-button downvote"
                                         aria-label="Downvote kommentar"
-                                        @onclick="() => Downvote(comment.Id)">
+                                        @onclick="() => DownvoteComment(comment.Id)">
                                     ▼
                                 </button>
 
@@ -138,7 +138,7 @@
                 <h3>Del dine tanker</h3>
                 <p>Har du noget på hjerte? Skriv en kommentar 💜</p>
 
-                <CreateComment PostId="@PostId" />
+                <CreateComment PostId="@PostId" OnCommentCreated="ReloadPost"/>
             </div>
         </section>
     }
@@ -164,15 +164,32 @@
             : username[..1].ToUpperInvariant();
     }
 
-    private Task Upvote(int id)
+    private async Task UpvotePost(int id)
     {
-        Console.WriteLine("Upvote not implemented yet.");
-        return Task.CompletedTask;
+        var updatedPost = await apiService.UpvotePost(id);
+
+        Post = await apiService.GetPost(PostId);
     }
 
-    private Task Downvote(int id)
+    private async Task DownvotePost(int id)
     {
-        Console.WriteLine("Downvote not implemented yet.");
-        return Task.CompletedTask;
+        var updatedPost = await apiService.DownvotePost(id);
+        Post = await apiService.GetPost(PostId);
+    }
+    
+    private async Task UpvoteComment(int commentId)
+    {
+        await apiService.UpvoteComment(PostId, commentId);
+        await ReloadPost();
+    }
+
+    private async Task DownvoteComment(int commentId)
+    {
+        await apiService.DownvoteComment(PostId, commentId);
+        await ReloadPost();
+    }
+    private async Task ReloadPost()
+    {
+        Post = await apiService.GetPost(PostId);
     }
 }
