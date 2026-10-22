@@ -78,18 +78,36 @@ app.MapGet("/api/posts/{id}",(DataService service, int id) =>
     return service.GetPostById(id);
 });
 
-/*
+
 //PUT 
-app.MapPut("/api/posts/{id}/upvote",() =>
+app.MapPut("/api/posts/{postId}/upvote",(DataService service, int postId) =>
 {
-
+    var post = service.PutPostUpwote(postId);
+    return new
+    {
+        id = post.Id,
+        title = post.Title,
+        content = post.Content,
+        upvotes = post.Upvotes,
+        downvotes = post.Downvotes,
+        user = new { post.User.UserId, post.User.Username }
+    };
 });
 
-app.MapPut("/api/posts/{id}/downvote",() =>
+app.MapPut("/api/posts/{postId}/downvote",(DataService service, int postId) =>
 {
-
+  var post = service.PutPostDownwote(postId);
+     return new
+     {
+         id = post.Id,
+         title = post.Title,
+         content = post.Content,
+         upvotes = post.Upvotes,
+         downvotes = post.Downvotes,
+         user = new { post.User.UserId, post.User.Username }
+     };
 });
-
+/*
 app.MapPut("/api/posts/{postid}/comments/{commentid}/upvote",() =>
 {
 

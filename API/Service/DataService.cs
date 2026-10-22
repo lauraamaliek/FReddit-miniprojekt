@@ -86,15 +86,22 @@ public class DataService
     public Post GetPostById(int id) {
         return db.Posts.Include(b => b.User).FirstOrDefault(p=>p.Id==id);
     }
+
+    public Post PutPostUpwote(int PostId)
+    {
+        var post = db.Posts.Include(b => b.User).FirstOrDefault(p => p.Id == PostId);
+        post.Upvotes++;
+        db.SaveChanges();
+        return post;
+    }
+
+    public Post PutPostDownwote(int PostId) {
+        var post = db.Posts.Include(b => b.User).FirstOrDefault(p => p.Id == PostId);
+        post.Downvotes++;
+        db.SaveChanges();
+        return post;
+    }
 /*
-    public Post PutPostUpwote(int PostId) {
-        
-    }
-
-    public Post PutPostDownwote(int id) {
-        
-    }
-
     public Post PutCommentUpwote(int id) {
         
     }
